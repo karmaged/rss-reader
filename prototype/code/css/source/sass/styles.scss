@@ -1,0 +1,238 @@
+@import "./normalize";
+@import "compass/css3";
+
+body {
+  background: #fafafa;
+  font: normal 14px "Lucida Console", "Monaco", sans-serif;
+  color: #555555;
+  min-width: 640px;
+
+  * { @include box-sizing(border-box); }
+}
+.clear {
+  width: 100%;
+  clear: both;
+}
+
+.page-header {
+  height: 75px;
+  border-bottom: 1px solid #bababa;
+  padding: 10px 20px;
+  overflow: hidden;
+
+  .logo {
+    color: #8d8d8d;
+    font-size: 35px;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
+    float: left;
+    height: 52px;
+  }
+  .search {
+    float: left;
+    margin: 10px 0;
+
+    input {
+      height: 35px;
+      width: 450px;
+      border: 1px solid #bababa;
+      background: #fafafa;
+      @include box-shadow(inset 1px 1px 3px rgba(black, .15));
+      padding: 0 10px;
+      font-size: 16px;
+      float: left;
+      margin: 0 0 0 120px;
+      @include transition(width 250ms linear);
+
+      @media screen and (max-width: 930px) {
+        margin: 0 0 0 20px;
+      }
+      @media screen and (max-width: 820px) {
+        width: 260px;
+      }
+    }
+    .submit {
+      height: 35px;
+      width: 60px;
+      @include background(linear-gradient(bottom, rgba(black, .06), transparent), #40acdf);
+      border: 1px solid #3397b8;
+      @include box-shadow(inset 0 1px rgba(white, .35), 0 1px 1px rgba(#14445b, .55));
+      float: left;
+      margin: 0 10px;
+      padding: 7.5px 0;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+  .profile {
+    width: 112px;
+    height: 35px;
+    float: right;
+    margin: 10px 0;
+    @include background(linear-gradient(bottom, rgba(black, .06), transparent), #e5e5e5);
+    @include box-shadow(inset 0 1px rgba(white, .35), 0 1px 1px rgba(#5e5e5e, .55));
+    border: 1px solid #aaaaaa;
+    color: #212121;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+
+    span { line-height: 2.5em; }
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-image: url(../img/cloudry_rss-reader_icons.svg);
+  background-repeat: no-repeat;
+  margin: 0 6px 0 0;
+
+  &.home { background-position: 0 0; }
+  &.star { background-position: -16px 0; }
+  &.folder {
+    height: 15px;
+    background-position: -32px 0;
+  }
+  &.sub {
+    height: 15px;
+    background-position: -48px 0;
+    margin: 0 6px -4px 0 !important;
+  }
+}
+.active {
+  &.icon {
+    &.home { background-position: 0 -16px; }
+    &.star { background-position: -16px -16px; }
+    &.select.star { background-position: -16px -32px; }
+    &.folder { background-position: -32px -16px; }
+    &.sub { background-position: -48px -15px; }
+  }
+}
+.active-sub span.sub-name { color: #d7694b; }
+.menu {
+  padding: 20px 20px 0;
+  width: 240px;
+  border-right: 1px solid #8e8e8e;
+  float: left;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .icon { margin: 0 6px -2px 0; }
+  .main {
+    border-bottom: 1px solid #8e8e8e;
+
+    h3 { display: inline-block; }
+    .subscribe-new {
+      cursor: pointer;
+      height: 35px;
+      width: 190px;
+      text-align: center;
+      line-height: 2em;
+      @include background(linear-gradient(bottom, rgba(black, .06), transparent), #de6c4d);
+      @include box-shadow(inset 0 1px rgba(white, .2), 0 1px 1px rgba(#602312, .55));
+      border: 1px solid #af5841;
+      color: #fafafa;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+    .nav {
+      margin: 25px 0 0;
+
+      h3 {
+        font-size: 16px;
+        color: #8e8e8e;
+        text-transform: uppercase;
+        font-weight: normal;
+        margin: 6px 0;
+      }
+    }
+  }
+}
+
+.subscribitions {
+  ul ul { padding: 0 0 0 10px; }
+  li {
+    margin: 5px 0;
+    cursor: pointer;
+
+    &:hover > .sub-name,
+    &:hover > .folder-name {
+      background: #ededed;
+      padding: 2px 4px;
+    }
+  }
+  h3 {
+    font-size: 16px;
+    color: #8e8e8e;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 10px 0 14px;
+  }
+  .folder-name,
+  .sub-name {
+    color: #212121;
+    font-size: 14px;
+  }
+  .unread-num {
+    color: #8e8e8e;
+    font-size: 12px;
+    margin: 0 4px;
+  }
+  .active-folder {
+    margin: 0 0 15px;
+  }
+}
+
+.feed {
+  margin: 0 0 0 240px;
+
+  .article {
+    h2 {
+      font-size: 28px;
+      color: #212121;
+      display: inline-block;
+      line-height: 1em;
+      margin: 10px 0;
+      font-weight: normal;
+    }
+  }
+  .article.read {
+    color: #929292;
+    h2 {
+      color: #868686;
+    }
+  }
+  .post-header,
+  .content { padding: 10px 20px 0; }
+  .post-header .icon {
+    margin: 0 0 0 10px;
+    cursor: pointer;
+  }
+  .post-footer {
+    height: 35px;
+    background: #e3e3e3;
+    border-top: 1px solid #bababa;
+    border-bottom: 1px solid #bababa;
+    line-height: 2.5em;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        float: left;
+      }
+    }
+    .icon {
+      margin: 0 50px -3px 20px;
+      cursor: pointer;
+    }
+  }
+}
