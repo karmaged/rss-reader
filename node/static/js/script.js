@@ -1,7 +1,0 @@
-/* Author: Cloudry
-*/
-
-(function() {
-
-
-})();
