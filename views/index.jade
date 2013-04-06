@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h3 Welcome to Express Starter Kit
+  if(user)
+    h3 You are currently logged in as #{user.username}
+
