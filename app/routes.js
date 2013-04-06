@@ -57,4 +57,29 @@ module.exports = function(app) {
     req.logout();
     res.redirect('/');
   });
+
+  app.get('/reader', function(req, res) {
+    if(req.user) {
+      res.render('reader', {
+        title: 'RSS Reader',
+        user: req.user
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+
+  app.post('/reader', function(req, res) {
+    if(req.user) {
+      var articles = [];
+      feedparser.parseUrl(req.param('url')).on('article', function(article) {
+        articles.push(article);
+      }).on('complete', function() {
+        res.send(articles, 200);
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
 };
+
