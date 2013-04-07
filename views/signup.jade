@@ -26,14 +26,10 @@ block content
           rect(x='102', y='44', fill-rule='evenodd', fill='#e7c868', width='3', height='1')
           rect(x='88', y='46', fill-rule='evenodd', fill='#e7c868', width='3', height='2')
           polygon(fill-rule='evenodd', fill='#e7c868', points='97,48 97,47 98,47 98,44 95,44 95,48')
-    h2 ВХОД
-    form
+    h2 РЕГИСТРАЦИЯ
+    form(method='POST', action='/signup')
       .field
-        input.fill(type='text', placeholder='ИМЯ ПОЛЬЗОВАТЕЛЯ', name='username', autocomplete='off', required)
+        input.fill(type='email', placeholder='EMAIL', autocomplete='off', name='email', required)
       .field
-        input.fill(type='password', name='password', placeholder='ПАРОЛЬ', required)
-      //-small запомнить?
-      //-input.fill(type='checkbox', name='remember-me', value='true')
-      input.btn(type='submit', value='ВОЙТИ')
-    small.signup
-      a(href='/signup') ЗАРЕГИСТРИРОВАТЬСЯ
+        input.fill(type='password', placeholder='ПАРОЛЬ', name='pass', required, minlength='6')
+      input.btn(type='submit', value='ЗАРЕГИСТРИРОВАТЬСЯ')

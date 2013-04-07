@@ -1,0 +1,129 @@
+extends layout
+
+block content
+
+  header.page-header
+
+    h1.logo
+      a(href='/')
+        svg(version='1.2', baseprofile='tiny', xmlns='http://www.w3.org/2000/svg', width='117px', height='52px', viewbox='0 0 117 52')
+          g
+            path(fill-rule='evenodd', fill='#e7c868', d='M36,15c0-8.284-6.716-15-15-15c-0.337,0-0.668,0.028-1,0.05 C19.668,0.028,19.337,0,19,0s-0.668,0.028-1,0.05C17.668,0.028,17.337,0,17,0s-0.668,0.028-1,0.05C15.668,0.028,15.337,0,15,0 C6.716,0,0,6.716,0,15v37h25.969l0.003-0.003C25.981,51.997,25.99,52,26,52c2.209,0,4-1.791,4-4c0-0.01-0.003-0.019-0.003-0.028 L30,47.969v-7.213l-2.5-1.443l2.5-1.443V27h5.005L30,19v2h-7v-5H11v2h-1v-2v-1h13h7H36z')
+            path(fill-rule='evenodd', fill='#e7c868', d='M29,20v-4h-5v4H29z M26,17h2v2h-2V17z')
+            rect(x='40', fill-rule='evenodd', fill='#e7c868', width='55', height='6')
+            rect(x='40', y='7', fill-rule='evenodd', fill='#e7c868', width='77', height='2')
+            rect(x='96', fill-rule='evenodd', fill='#e7c868', width='21', height='6')
+            rect(x='40', y='10', fill-rule='evenodd', fill='#e7c868', width='77', height='2')
+            rect(x='40', y='13', fill-rule='evenodd', fill='#e7c868', width='77', height='2')
+            rect(x='40', y='16', fill-rule='evenodd', fill='#e7c868', width='77', height='2')
+            rect(x='40', y='19', fill-rule='evenodd', fill='#e7c868', width='23', height='17')
+            rect(x='64', y='19', fill-rule='evenodd', fill='#e7c868', width='53', height='4')
+            rect(x='64', y='24', fill-rule='evenodd', fill='#e7c868', width='53', height='2')
+            rect(x='64', y='27', fill-rule='evenodd', fill='#e7c868', width='53', height='1')
+            rect(x='64', y='29', fill-rule='evenodd', fill='#e7c868', width='53', height='1')
+            rect(x='64', y='31', fill-rule='evenodd', fill='#e7c868', width='53', height='1')
+            rect(x='64', y='33', fill-rule='evenodd', fill='#e7c868', width='53', height='3')
+            rect(x='81', y='44', fill-rule='evenodd', fill='#e7c868', width='3', height='1')
+            path(fill-rule='evenodd', fill='#e7c868', d='M40,52h77V37H40V52z M108,43h1v1h1v-1h3v1v1h-1v-1h-2v1h-1v4h-1V43z M101,44h1v-1h3v1 h1v1v1h-4v2h4v1h-4v-1h-1V44z M94,44h1v-1h3v-3h1v9h-1v-1h-1v1h-2v-1h-1V44z M87,46h1v-1h3v-1h-3v-1h3v1h1v4h1v1h-5v-1h-1V46z M80,44h1v-1h3v1h1v1v1h-4v2h4v1h-4v-1h-1V44z M73,43h1v1h1v-1h3v1v1h-1v-1h-2v1h-1v4h-1V43z M59,48h4v-1h-1v-1h-2h-1v-2h1v-1h4v1 h-4v1h2v1h2v1v1h-1v1h-4V48z M52,48h4v-1h-1v-1h-2h-1v-2h1v-1h4v1h-4v1h2v1h2v1v1h-1v1h-4V48z M45,43h1v1h1v-1h3v1v1h-1v-1h-2v1h-1 v4h-1V43z')
+            rect(x='102', y='44', fill-rule='evenodd', fill='#e7c868', width='3', height='1')
+            rect(x='88', y='46', fill-rule='evenodd', fill='#e7c868', width='3', height='2')
+            polygon(fill-rule='evenodd', fill='#e7c868', points='97,48 97,47 98,47 98,44 95,44 95,48')
+
+    .search
+      input(type='text', name='s', autocomplete='off', placeholder='Поиск в RSS Reader')
+      .submit
+        svg(version='1.2', baseprofile='tiny', xmlns='http://www.w3.org/2000/svg', width='20.314px', height='20.314px', viewbox='0 0 20.314 20.314')
+          path(fill-rule='evenodd', fill='#fafafa', d='M12.803,2.197c-2.929-2.929-7.678-2.929-10.606,0s-2.929,7.678,0,10.607 s7.678,2.929,10.606,0C15.732,9.875,15.732,5.126,12.803,2.197z M11.389,11.389c-2.148,2.148-5.63,2.148-7.778,0 c-2.147-2.148-2.147-5.63,0-7.778c2.148-2.148,5.63-2.148,7.778,0C13.537,5.759,13.537,9.241,11.389,11.389z')
+          path(fill-rule='evenodd', fill='#fafafa', d='M13.51,13.51c0.586-0.586,1.536-0.586,2.122,0l4.243,4.243 c0.586,0.586,0.586,1.535,0,2.121c-0.586,0.586-1.536,0.586-2.122,0l-4.243-4.243C12.925,15.046,12.925,14.096,13.51,13.51z')
+          path(fill-rule='evenodd', fill='#fafafa', d='M12.449,13.157l0.707-0.707l0.707,0.707l-0.707,0.707L12.449,13.157z')
+
+    .profile
+      span Аккаунт
+
+  aside.menu
+    section.main
+      .subscribe-new Подписаться
+      .import-rss Импортировать RSS
+      ul.nav
+        li
+          i.home.icon
+          h3 Главная
+        li
+          i.star.icon
+          h3 Отмеченные записи
+    section.subscribitions
+      h3 Подписки
+      ul.main-list
+        li
+          i.folder.icon
+          span.folder-name Подписки
+          span.unread-num (14)
+        li
+          i.folder.icon
+          span.folder-name Подписки
+          span.unread-num (8)
+        li.active-folder
+          i.folder.icon.active
+          span.folder-name Подписки
+          span.unread-num (163)
+          ul.sub-list
+            li.active-sub
+              i.sub.icon.active
+              span.sub-name Подписка
+              span.unread-num (1)
+            li
+              i.sub.icon
+              span.sub-name Подписка
+              span.unread-num (100)
+            li
+              i.sub.icon
+              span.sub-name Подписка
+              span.unread-num (62)
+        li
+          i.folder.icon
+          span.folder-name Подписки
+          span.unread-num (1000+)
+        li
+          i.sub.icon
+          span.sub-name Подписка
+          span.unread-num (35)
+        li
+          i.sub.icon
+          span.sub-name Подписка
+          span.unread-num (659)
+        li
+          i.sub.icon
+          span.sub-name Подписка
+          span.unread-num (11)
+
+  section.feed
+    article.article.read
+      header.post-header
+        h2 Заголовок новости
+        i.icon.star
+      .content
+        p
+          | Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+        p
+          | The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+      footer.post-footer
+        ul
+          li
+            i.icon.star
+          li
+            span Поделиться
+    article.article
+      header.post-header
+        h2 Заголовок новости
+        i.icon.star
+      .content
+        p
+          | Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+        p
+          | The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+      footer.post-footer
+        ul
+          li
+            i.icon.star
+          li
+            span Поделиться
