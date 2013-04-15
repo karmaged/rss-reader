@@ -74,21 +74,17 @@ module.exports = function(app) {
 
 
   app.get('/reader', function(req, res) {
-    if (req.user) {
-      User.findOne({_id: req.user._id}, function(err, user) {
-        if (err) {
-          console.log(err);
-        } else {
-          res.render('reader', {
-            title: app.get('title'),
-            user: req.user,
-            script: 'main',
-            subscriptions: user.subscriptions
-          });
-        }
-      });
-    } else {
+    if (!req.user) {
       res.redirect('/');
+    } else {
+      User.findById(req.user._id, function(err, user) {
+        res.render('reader', {
+          title: app.get('title'),
+          user: user,
+          script: 'main',
+          subscriptions: user.subscriptions
+        });
+      });
     }
   });
 
