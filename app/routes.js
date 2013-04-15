@@ -122,25 +122,29 @@ module.exports = function(app) {
 
 
   app.post('/subscribe', function(req, res) {
-    var articles = [];
+    if (!req.user) {
+      req.send('Error occured.', 403);
+    } else {
+      var articles = [];
 
-    feedparser.parseUrl(req.body.subscriptionUrl)
-              .on('article', function(article) {
-                 articles.push(article);
-              })
-              .on('complete', function(info) {
-                var feed = {
-                  title: info.title,
-                  url: req.body.subscriptionUrl,
-                  unread: articles.length
-                };
+      feedparser.parseUrl(req.body.subscriptionUrl)
+                .on('article', function(article) {
+                   articles.push(article);
+                })
+                .on('complete', function(info) {
+                  var feed = {
+                    title: info.title,
+                    url: req.body.subscriptionUrl,
+                    unread: articles.length
+                  };
 
-                req.user.subscriptions.push(feed);
-                User.findById(req.user._id, function(err, user) {
-                  user.subscriptions = req.user.subscriptions;
-                  res.send({title: info.title, feed: articles}, 200);
+                  req.user.subscriptions.push(feed);
+                  User.findById(req.user._id, function(err, user) {
+                    user.subscriptions = req.user.subscriptions;
+                    res.send({title: info.title, feed: articles}, 200);
+                  });
                 });
-              });
+    }
   });
 
 }
