@@ -4,18 +4,20 @@ var passport = require('passport'),
     subscribe = require(path.join(__dirname, 'modules', 'subscribitions')),
     feedparser = require('feedparser');
 
+
 module.exports = function(app) {
   app.get('/', function(req, res) {
     if (req.user) {
       res.redirect('/reader');
     } else {
       res.render('index', {
-        title : 'ESK',
+        title : app.get('title'),
         user: req.user,
         script: 'login'
       });
     }
   });
+
 
   app.post('/', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
@@ -26,30 +28,35 @@ module.exports = function(app) {
     })(req, res, next);
   });
 
+
   app.get('/403', function(req, res, next) {
     var err = new Error('Not allowed');
     err.status = 403;
     next(err);
   });
 
+
   app.get('/404', function(req, res, next) {
     next();
   });
+
 
   app.get('/500', function(req, res, next) {
     next(new Error('Server error'));
   });
 
+
   app.get('/signup', function(req, res) {
     res.render('signup', {
-      title : 'ESK | Register',
+      title : app.get('title') + ' | Register',
       script: 'signup'
     });
   });
 
+
   app.post('/signup', function(req, res) {
     User.register(new User({username: req.body.email}), req.body.pass, function(err, user) {
-      if(err) {
+      if (err) {
         res.send('registration-failed', 200);
       } else {
         req.logIn(user, function(err) {
@@ -59,19 +66,21 @@ module.exports = function(app) {
     });
   });
 
+
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
 
+
   app.get('/reader', function(req, res) {
-    if(req.user) {
+    if (req.user) {
       User.findOne({_id: req.user._id}, function(err, user) {
         if (err) {
           console.log(err);
         } else {
           res.render('reader', {
-            title: 'RSS Reader',
+            title: app.get('title'),
             user: req.user,
             script: 'main',
             subscribitions: user.subscribitions
@@ -83,8 +92,9 @@ module.exports = function(app) {
     }
   });
 
+
   app.post('/get-feed', function(req, res) {
-    if(req.user) {
+    if (req.user) {
       User.findOne({_id: req.user._id}, function(err, user) {
         if (err) {
           console.log(err);
@@ -110,24 +120,8 @@ module.exports = function(app) {
     }
   });
 
-  // app.post('/reader', function(req, res) {
-  //   if(req.user) {
-  //     var articles = [];
-  //     feedparser.parseUrl(req.param('url')).on('article', function(article) {
-  //       articles.push(article);
-  //     }).on('complete', function() {
-  //       res.send(articles, 200);
-  //     });
-  //   } else {
-  //     res.redirect('/');
-  //   }
-  // });
 
   app.post('/subscribe', function(req, res) {
-    // var subscribitionsData = {
-    //   url: req.body.subscriptionUrl,
-    //   name: ''
-    // };
     var articles = [];
 
     feedparser.parseUrl(req.body.subscriptionUrl).on('article', function(article) {
