@@ -54,13 +54,13 @@ block content
     section.subscribitions
       h3 Подписки
       ul.main-list
-        - if (subscribitions.length > 0)
-          - each subscribition in subscribitions
+        - if (subscriptions.length > 0)
+          - each subscription in subscriptions
             li
               i.sub.icon
-              span.sub-name= subscribition.title
-              - if (subscribition.unread > 0)
-                span.unread-num= '('+subscribition.unread+')'
+              span.sub-name= subscription.title
+              - if (subscription.unread > 0)
+                span.unread-num= '('+subscription.unread+')'
 
   section.feed
 

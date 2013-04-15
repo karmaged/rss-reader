@@ -83,7 +83,7 @@ module.exports = function(app) {
             title: app.get('title'),
             user: req.user,
             script: 'main',
-            subscribitions: user.subscribitions
+            subscriptions: user.subscriptions
           });
         }
       });
@@ -124,18 +124,24 @@ module.exports = function(app) {
   app.post('/subscribe', function(req, res) {
     var articles = [];
 
-    feedparser.parseUrl(req.body.subscriptionUrl).on('article', function(article) {
-      articles.push(article);
-    }).on('complete', function(info) {
-      req.user.subscribitions.push({title: info.title, url: req.body.subscriptionUrl, unread: articles.length});
-      User.findOneAndUpdate({_id: req.user._id}, {subscribitions: req.user.subscribitions}, {}, function(err, user) {
-        if (err) {
-          console.log(err);
-        } else {
-          res.send({title: info.title, feed: articles}, 200);
-        }
-      });
-    });
+    feedparser.parseUrl(req.body.subscriptionUrl)
+              .on('article', function(article) {
+                 articles.push(article);
+              })
+              .on('complete', function(info) {
+                var feed = {
+                  title: info.title,
+                  url: req.body.subscriptionUrl,
+                  unread: articles.length
+                };
+
+                req.user.subscriptions.push(feed);
+                User.findById(req.user._id, function(err, user) {
+                  user.subscriptions = req.user.subscriptions;
+                  res.send({title: info.title, feed: articles}, 200);
+                });
+              });
   });
-};
+
+}
 
