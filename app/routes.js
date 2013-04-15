@@ -137,6 +137,7 @@ module.exports = function(app) {
                   req.user.subscriptions.push(feed);
                   User.findById(req.user._id, function(err, user) {
                     user.subscriptions = req.user.subscriptions;
+                    user.save();
                     res.send({title: info.title, feed: articles}, 200);
                   });
                 });
