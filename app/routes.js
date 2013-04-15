@@ -94,29 +94,29 @@ module.exports = function(app) {
 
 
   app.post('/get-feed', function(req, res) {
-    if (req.user) {
-      User.findOne({_id: req.user._id}, function(err, user) {
-        if (err) {
-          console.log(err);
-        } else {
-          var url,
-              articles = [];
-
-          for (var i = 0, sl = user.subscribitions.length; i < sl; i++) {
-            if (user.subscribitions[i].title === req.body.title) {
-              url = user.subscribitions[i].url;
-            }
-          }
-
-          feedparser.parseUrl(url).on('article', function(article) {
-            articles.push(article);
-          }).on('complete', function() {
-            res.send(articles, 200);
-          });
-        }
-      });
+    if (!req.user) {
+      res.send('Error occured.', 403);
     } else {
-      res.send('error occurred', 400);
+      User.findById(req.user._id, function(err, user) {
+        var articles = [],
+            url = null;
+        
+        for (var i = 0, sl = user.subscribitions.length; i < sl; i++) {
+          var subscription_title = user.subscribitions[i].title;
+
+          if (subscribition_title === req.body.title) {
+            url = subscribition_title;
+          }
+        }
+
+        feedparser.parseUrl(url)
+                  .on('article', function(article) {
+                    articles.push(article);
+                  })
+                  .on('complete', function() {
+                    res.send(articles, 200);
+                  });
+      });
     }
   });
 
