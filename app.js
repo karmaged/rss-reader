@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-mongoose.connect('mongodb://127.0.0.1/express-starter-kit');
+mongoose.connect('mongodb://127.0.0.1/rss-reader');
 
 
 routes(app);
